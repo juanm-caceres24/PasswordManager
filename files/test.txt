@@ -1,0 +1,12 @@
+ID=40
+name=NAME_GENERIC
+value=512
+status=idle
+protocol=generic
+list=[0,1,2,3,4,5,6,7,8,9]
+values={
+first
+second
+third
+fourth
+}=values
