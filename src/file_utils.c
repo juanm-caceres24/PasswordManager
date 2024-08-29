@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include "../includes/file_utils.h"
 
+#define LINE_BUFFER_SIZE 1024
+
 /**
  * @brief Appends content to lines in a file that contain a specified pattern.
  *
@@ -43,7 +45,7 @@ void find_and_append_data(const char *path, const char *find, const char *append
         fclose(file);
         return;
     }
-    char line[1024];
+    char line[LINE_BUFFER_SIZE];
     while (fgets(line, sizeof(line), file) != NULL)
     {
         char *position = strstr(line, find);
@@ -101,7 +103,7 @@ char *find_and_return_inline_data(const char *path, const char *find)
         printf("ERROR - file=NULL - Path: %s", path);
         return NULL;
     }
-    char line[256];
+    char line[LINE_BUFFER_SIZE];
     while (fgets(line, sizeof(line), file))
     {
         char *found = strstr(line, find);
@@ -164,7 +166,7 @@ char *return_inline_data_from_to(const char *path, const char *from, const char 
         return NULL;
     }
     char *output = NULL;
-    char line[1024];
+    char line[LINE_BUFFER_SIZE];
     while (fgets(line, sizeof(line), file))
     {
         char *start = strstr(line, from);
@@ -175,7 +177,7 @@ char *return_inline_data_from_to(const char *path, const char *from, const char 
             if (end)
             {
                 size_t length = end - start;
-                output = malloc(length + 1);
+                output = (char *)malloc(length + 1);
                 if (output == NULL)
                 {
                     printf("ERROR - output=NULL - Allocation memory");
@@ -229,7 +231,7 @@ char *return_lines_from_to(const char *path, const char *from, const char *to)
     char *output = NULL;
     size_t output_size = 0;
     size_t output_length = 0;
-    char line[1024];
+    char line[LINE_BUFFER_SIZE];
     int recording = 0;
     while (fgets(line, sizeof(line), file))
     {

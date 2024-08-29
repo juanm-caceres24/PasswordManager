@@ -1,5 +1,5 @@
-#ifndef FILEUTILS_H
-#define FILEUTILS_H
+#ifndef FILE_UTILS_H
+#define FILE_UTILS_H
 
 void find_and_append_data(const char *path, const char *find, const char *append);
 char *find_and_return_inline_data(const char *path, const char *find);

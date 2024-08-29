@@ -2,14 +2,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-// #include "../includes/fil_eutils.h"
+// #include "../includes/file_utils.h"
+// #include "../includes/user_interface.h"
 #include "file_utils.c"
+#include "user_interface.c"
 
 int main(int argc, char *argv[])
 {
-    find_and_append_data("../files/test.txt", "name=", "NAME_GENERIC");
-    printf("%s\n", find_and_return_inline_data("../files/test.txt", "name="));
-    printf("%s\n", return_inline_data_from_to("../files/test.txt", "list=[", "]"));
-    printf("%s\n", return_lines_from_to("../files/test.txt", "values={", "}=values"));
+    int menu_id = 0;
+    int function_id = 0;
+    while (1)
+    {
+        function_id = get_menu(&menu_id);
+    }
     return 0;
 }
