@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-// #include "../includes/file_utils.h"
-// #include "../includes/user_interface.h"
+// #include "../include/file_utils.h"
+// #include "../include/user_interface.h"
 #include "file_utils.c"
 #include "user_interface.c"
 

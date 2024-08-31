@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "../includes/file_utils.h"
+#include "../include/file_utils.h"
 
 #define LINE_BUFFER_SIZE 1024
 
@@ -30,7 +30,7 @@
  * @note The function rewinds both the original and temporary files to the beginning
  *       before writing the modified content back to the original file.
  */
-void find_and_append_data(const char *path, const char *find, const char *append)
+void find_and_append_to_file(const char *path, const char *find, const char *append)
 {
     FILE *file = fopen(path, "r+");
     if (file == NULL)
@@ -95,7 +95,7 @@ void find_and_append_data(const char *path, const char *find, const char *append
  * @warning This function only returns the first occurrence of `find` in the
  *          file. If there are multiple occurrences, only the first one is considered.
  */
-char *find_and_return_inline_data(const char *path, const char *find)
+char *find_and_extract_line_data(const char *path, const char *find)
 {
     FILE *file = fopen(path, "r");
     if (file == NULL)
@@ -157,7 +157,7 @@ char *find_and_return_inline_data(const char *path, const char *find)
  * @warning If there is an error in opening the file or allocating memory,
  *          the function prints an error message to `stdout` and returns `NULL`.
  */
-char *return_inline_data_from_to(const char *path, const char *from, const char *to)
+char *extract_data_between_markers(const char *path, const char *from, const char *to)
 {
     FILE *file = fopen(path, "r");
     if (file == NULL)
@@ -220,7 +220,7 @@ char *return_inline_data_from_to(const char *path, const char *from, const char 
  * @warning If there is an error in opening the file or allocating memory, the function
  *          prints an error message to `stdout` and returns `NULL`.
  */
-char *return_lines_from_to(const char *path, const char *from, const char *to)
+char *extract_lines_between_markers(const char *path, const char *from, const char *to)
 {
     FILE *file = fopen(path, "r");
     if (file == NULL)
@@ -239,7 +239,7 @@ char *return_lines_from_to(const char *path, const char *from, const char *to)
         {
             if (strstr(line, to))
             {
-                break; // Stop recording when 'to' is found
+                break;
             }
             size_t line_length = strlen(line);
             char *new_result = realloc(output, output_size + line_length + 1);
