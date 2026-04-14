@@ -501,7 +501,6 @@ bool ensure_encoding_seed() {
         cout << "[ERROR] Could not save encoding seed." << endl;
         return false;
     }
-
     return true;
 }
 
